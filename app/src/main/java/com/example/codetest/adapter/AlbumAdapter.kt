@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codetest.R
 import com.example.codetest.model.response.Album
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_album.view.*
 import kotlinx.android.synthetic.main.list_album.view.*
 
@@ -46,7 +47,8 @@ class AlbumAdapter(
 
             item?.collectionName?.let { holder.album.setCollectionName(it) }
             item?.artistName?.let { holder.album.setArtist(it) }
-            item?.releaseDate?.let { holder.album.setReleaseDate(it) }
+            item?.releaseDate?.let { holder.album.setReleaseDate(it.split("T")[0]) }
+            item?.artworkUrl100?.let { Picasso.get().load(it).into(holder.album.iv_collection_img) }
 
 
         }
