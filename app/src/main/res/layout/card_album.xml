@@ -6,7 +6,7 @@
     android:layout_height="250dp"
     app:cardCornerRadius="10dp"
     android:layout_marginHorizontal="25dp"
-    android:layout_marginTop="20dp">
+    android:layout_marginVertical="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,14 +46,16 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="18dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"/>
 
             <TextView
                 android:id="@+id/tv_artist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_collection"
-                android:text="Singer"/>
+                android:text="Artist"/>
 
             <TextView
                 android:id="@+id/tv_release_date"

@@ -2,10 +2,10 @@ package com.example.codetest.model.response
 
 data class AlbumResponse (
     val resultCount: Long,
-    val results: List<Result>
+    val results: List<Album>
 )
 
-data class Result(
+data class Album(
     val wrapperType: String,
     val collectionType: String,
     val artistID: Long,
