@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 abstract class BaseViewModel(application: Application): AndroidViewModel(application) {
 
@@ -16,7 +15,6 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
         MutableLiveData<Boolean>()
     }
 
-    @ExperimentalCoroutinesApi
     override fun onCleared() {
         super.onCleared()
         allDisposable.clear()

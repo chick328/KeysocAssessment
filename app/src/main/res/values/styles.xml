@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AlbumCard">
+        <attr name="collection_name" format="string"/>
+        <attr name="artist" format="string"/>
+        <attr name="release_date" format="string"/>
+    </declare-styleable>
+</resources>
