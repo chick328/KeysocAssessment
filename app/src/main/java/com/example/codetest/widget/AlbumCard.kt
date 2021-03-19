@@ -13,6 +13,7 @@ class AlbumCard constructor(
     private var collectionName: String
     private var artist: String
     private var releaseDate: String
+    private var isBookmark: Boolean
 
     init {
         inflate(context, R.layout.card_album, this)
@@ -22,6 +23,7 @@ class AlbumCard constructor(
         collectionName = style.getString(R.styleable.AlbumCard_collection_name) ?: ""
         artist = style.getString(R.styleable.AlbumCard_artist) ?: ""
         releaseDate = style.getString(R.styleable.AlbumCard_release_date) ?: ""
+        isBookmark = style.getBoolean(R.styleable.AlbumCard_is_bookmark, false)
 
         style.recycle()
         initView()
@@ -31,18 +33,27 @@ class AlbumCard constructor(
         setCollectionName(collectionName)
         setArtist(artist)
         setReleaseDate(releaseDate)
+        setIsBookmark(isBookmark)
 
     }
 
-    fun setCollectionName(input: String) {
+    fun setCollectionName(input: String){
         tv_collection.text = input
     }
 
-    fun setArtist(input: String) {
+    fun setArtist(input: String){
         tv_artist.text = input
     }
 
-    fun setReleaseDate(input: String) {
+    fun setReleaseDate(input: String){
         tv_release_date.text = input
+    }
+
+    fun setIsBookmark(input: Boolean){
+        if (input){
+            iv_bookmark.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }else{
+            iv_bookmark.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
     }
 }

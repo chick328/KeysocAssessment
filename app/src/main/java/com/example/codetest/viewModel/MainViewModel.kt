@@ -3,6 +3,7 @@ package com.example.codetest.viewModel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.codetest.db.BookmarkRepository
 import com.example.codetest.model.response.Album
 import com.example.codetest.model.response.AlbumResponse
 import com.example.codetest.network.ApiService
