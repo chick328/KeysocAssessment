@@ -11,27 +11,38 @@ import com.example.codetest.network.ApiServiceImpl
 import io.reactivex.rxjava3.observers.DisposableObserver
 import retrofit2.Response
 
-class MainViewModel(application: Application): BaseViewModel(application) {
+class MainViewModel(application: Application) : BaseViewModel(application) {
     val albumData = MutableLiveData<List<Album>>()
+    val bookmarkData = MutableLiveData<List<Album>>()
 
-    fun getAlbum(){
+    fun getAlbum() {
         allDisposable.addAll(
-            ApiServiceImpl.getAlbum().subscribeWith(object: DisposableObserver<Response<AlbumResponse>>() {
-                override fun onNext(t: Response<AlbumResponse>) {
-                    if (t.isSuccessful){
-                        albumData.postValue(t.body()?.results)
+            ApiServiceImpl.getAlbum()
+                .subscribeWith(object : DisposableObserver<Response<AlbumResponse>>() {
+                    override fun onNext(t: Response<AlbumResponse>) {
+                        if (t.isSuccessful) {
+                            albumData.postValue(t.body()?.results)
+
+                        }
+                    }
+
+                    override fun onError(e: Throwable?) {
+                    }
+
+                    override fun onComplete() {
 
                     }
-                }
 
-                override fun onError(e: Throwable?) {
-                }
+                })
+        )
+    }
 
-                override fun onComplete() {
 
-                }
-
-            })
+    fun getBookmark(albums: List<Album> = listOf(), bookmarkList: List<Long> = listOf()) {
+        bookmarkData.postValue(
+            albums.filter {
+                bookmarkList.contains(it.collectionId)
+            }
         )
     }
 }

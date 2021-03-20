@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 class BookmarkRepository(private val bookmarkDao: BookmarkDao) {
 
-    val bookmarkedIds: Flow<List<String>> = bookmarkDao.getIds()
+    val bookmarkedIds: Flow<List<Long>> = bookmarkDao.getIds()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

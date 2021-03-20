@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class DbViewModel(private val repository: BookmarkRepository): ViewModel() {
 
-    val bookmarkedIds: LiveData<List<String>> = repository.bookmarkedIds.asLiveData()
+    val bookmarkedIds: LiveData<List<Long>> = repository.bookmarkedIds.asLiveData()
 
     fun insert(bookmark: Bookmark) = viewModelScope.launch {
         repository.insert(bookmark)

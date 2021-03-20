@@ -51,9 +51,9 @@ class AlbumCard constructor(
 
     fun setIsBookmark(input: Boolean){
         if (input){
-            iv_bookmark.setImageResource(R.drawable.ic_baseline_favorite_24)
+            iv_bookmark.setImageResource(R.drawable.ic_baseline_star_24)
         }else{
-            iv_bookmark.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            iv_bookmark.setImageResource(R.drawable.ic_baseline_star_border_24)
         }
     }
 }

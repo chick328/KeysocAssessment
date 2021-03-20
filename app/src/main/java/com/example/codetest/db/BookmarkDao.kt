@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface BookmarkDao {
 
     @Query("SELECT collectionId FROM bookmark_table")
-    fun getIds(): Flow<List<String>>
+    fun getIds(): Flow<List<Long>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(bookmark: Bookmark)
