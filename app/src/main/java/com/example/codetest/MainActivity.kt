@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codetest.adapter.AlbumAdapter
 import com.example.codetest.application.MyApplication
+import com.example.codetest.constant.Page
 import com.example.codetest.db.Bookmark
 import com.example.codetest.listener.OnBookmarkClickListener
 import com.example.codetest.model.response.Album
@@ -15,6 +16,7 @@ import com.example.codetest.viewModel.DbViewModel
 import com.example.codetest.viewModel.DbViewModelFactory
 import com.example.codetest.viewModel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnBookmarkClickListener {
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity(), OnBookmarkClickListener {
     private var bookmarks: List<Long> = listOf()
     private var albums: List<Album> = listOf()
     private var adapter: AlbumAdapter? = null
+    private var pageType: Page = Page.ALBUM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,9 +56,11 @@ class MainActivity : AppCompatActivity(), OnBookmarkClickListener {
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.album -> {
+                    pageType = Page.ALBUM
                     mainViewModel.getAlbum()
                 }
                 R.id.bookmark -> {
+                    pageType = Page.BOOKMARK
                     mainViewModel.getBookmark(albums, bookmarks)
                 }
             }
@@ -81,8 +86,19 @@ class MainActivity : AppCompatActivity(), OnBookmarkClickListener {
     private fun observeDbViewModel() {
 
         dbViewModel.bookmarkedIds.observe(this, Observer {
+
             bookmarks = it
             updateBookmark(it)
+
+            when(pageType){
+                Page.ALBUM -> {
+                }
+
+                Page.BOOKMARK -> {
+                    mainViewModel.getBookmark(albums, bookmarks)
+                }
+            }
+
 
         })
 
